@@ -34,11 +34,11 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
   <?php
       }
       echo "</tbody></table>";
-      echo "<form id='clear_form' action='". APP_URL ."/admin/tokens' method='POST'><input type='hidden' name='clear_tokens'/><a class='button red' onclick=\"confirm('Are you sure you want to delete all tokens') ? $('.workspace #clear_form').submit() : '';\">Clear Tokens</a></form>";
+      echo "<form id='clear_form' action='". APP_URL ."/admin/tokens' method='POST'><input type='hidden' name='clear_tokens'/><a class='btn red' onclick=\"confirm('Are you sure you want to delete all tokens') ? $('.workspace #clear_form').submit() : '';\">Clear Tokens</a></form>";
     }
   }else{
   ?>
-    <a href='<?php echo APP_URL;?>/admin/config' class='button red'>Setup logSys Admin</a>
+    <a href='<?php echo APP_URL;?>/admin/config' class='btn red'>Setup logSys Admin</a>
   <?php
   }
   ?>

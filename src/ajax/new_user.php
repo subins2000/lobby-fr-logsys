@@ -27,7 +27,7 @@ $columns = $this->dbh->query("DESCRIBE `". $this->table ."`")->fetchAll();
     }
   }
   ?>
-  <button class='button green'>Create User</button>
+  <button class='btn green'>Create User</button>
 </form>
 <style>
   form label{

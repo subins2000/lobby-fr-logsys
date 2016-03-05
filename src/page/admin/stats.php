@@ -51,7 +51,7 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
     });
   }else{
   ?>
-    <a href='<?php echo APP_URL;?>/admin/config' class='button red'>Setup logSys Admin</a>
+    <a href='<?php echo APP_URL;?>/admin/config' class='btn red'>Setup logSys Admin</a>
   <?php
   }
   ?>

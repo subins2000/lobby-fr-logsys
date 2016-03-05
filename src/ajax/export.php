@@ -7,7 +7,7 @@ system($command);
 sleep(5);
 
 if(file_exists($backupFileLoc)){
-  echo \Lobby::l("/contents/extra/$backupFile", "Download SQL File", "class='button red' target='_blank'");
+  echo \Lobby::l("/contents/extra/$backupFile", "Download SQL File", "class='btn red' target='_blank'");
 }else{
   echo "It didn't work. Try using phpMyAdmin to export Database. or direclty use the terminal command : <blockquote>$command</blockquote>";
 }
