@@ -1,5 +1,5 @@
 <?php
-require_once APP_DIR . "/src/inc/partial/layout.php";
+require_once $this->dir . "/src/inc/partial/layout.php";
 ?>
 <div class='contentLoader'>
   <h1>Users</h1>
@@ -14,7 +14,7 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
     if(isset($_POST['remove_user'])){
       $sql = $this->dbh->prepare("DELETE FROM `". $this->table ."` WHERE `id` = ?");
       $sql->execute(array($_POST['remove_user']));
-      sss("Removed User", "The user with the ID '". htmlspecialchars($_POST['remove_user']) ."' was deleted from the database");
+      echo sss("Removed User", "The user with the ID '". htmlspecialchars($_POST['remove_user']) ."' was deleted from the database");
     }
     
     $_GET['start'] = isset($_GET['start']) ? $_GET['start'] : 0;
@@ -53,7 +53,7 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
         <tr>
           <td><?php
           echo "<a class='btn dialog' data-dialog='edit.php' data-params=\"uid=$id\">Edit</a>";
-          echo "<form id='clear_form' action='". APP_URL ."/admin/users' method='POST' style='display: inline-block;'><input type='hidden' name='remove_user' value='$id'/><a class='btn red' onclick=\"confirm('Are you sure you want to delete the user ?') ? $(this).parents('form').submit() : '';\">Remove</a></form>";
+          echo "<form id='clear_form' action='". $this->url ."/admin/users' method='POST' style='display: inline-block;'><input type='hidden' name='remove_user' value='$id'/><a class='btn red' onclick=\"confirm('Are you sure you want to delete the user ?') ? $(this).parents('form').submit() : '';\">Remove</a></form>";
           ?></td>
           <td><?php echo $id;?></td>
           <td><?php echo $r['username'];?></td>
@@ -71,16 +71,16 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
       echo "<center>";
         for($i=1;$i < ceil($usersCount / 10) + 1;$i++){
           $start = ($i - 1) * 10;
-          echo "<a href='". ($i != 1 ? APP_URL . "/admin/users?start=$start" : APP_URL . "/admin/users") ."' class='btn ". (isset($_GET['start']) && $_GET['start'] == $start ? "green" : "") ."'>$i</a>";
+          echo "<a href='". ($i != 1 ? $this->url . "/admin/users?start=$start" : $this->url . "/admin/users") ."' class='btn ". (isset($_GET['start']) && $_GET['start'] == $start ? "green" : "") ."'>$i</a>";
         }
       echo "</center>";
     }
   }else{
   ?>
-    <a href='<?php echo APP_URL;?>/admin/config' class='btn red'>Setup logSys Admin</a>
+    <a href='<?php echo $this->url;?>/admin/config' class='btn red'>Setup logSys Admin</a>
   <?php
   }
   ?>
 </div>
-<?php require_once APP_DIR . "/src/inc/partial/layout_footer.php";?>
+<?php require_once $this->dir . "/src/inc/partial/layout_footer.php";?>
 

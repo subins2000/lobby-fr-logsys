@@ -1,6 +1,6 @@
 <?php
 if(!isset($_POST['uid'])){
-  ser("Invalid Request", "The request wasn't right.");
+  echo ser("Invalid Request", "The request wasn't right.");
 }else{
   $this->load();
   $sql = $this->dbh->prepare("SELECT * FROM `". $this->table ."` WHERE `id` = ?");
@@ -28,7 +28,7 @@ if(!isset($_POST['uid'])){
         \fr_logsys\Fr\LS::$loggedIn = false;
       }
       
-      sss("Updated", "The user's data was successfully updated. <a href='javascript:window.location.reload();'>Reload page</a> to see changes.");
+      echo sss("Updated", "The user's data was successfully updated. <a href='javascript:window.location.reload();'>Reload page</a> to see changes.");
       
       $sql = $this->dbh->prepare("SELECT * FROM `". $this->table ."` WHERE `id` = ?");
       $sql->execute(array($id));
@@ -74,7 +74,7 @@ if(!isset($_POST['uid'])){
     <script>
       $("form#updateUser").die("submit").live("submit", function(){
         event.preventDefault();
-        $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "edit.php"}).appendTo(".workspace").click();
+        $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "edit.php"}).appendTo("#workspace").click();
       });
     </script>
 <?php

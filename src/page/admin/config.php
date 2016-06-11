@@ -1,5 +1,5 @@
 <?php
-require_once APP_DIR . "/src/inc/partial/layout.php";
+require_once $this->dir . "/src/inc/partial/layout.php";
 ?>
 <div class='contentLoader'>
   <h1>Settings</h1>
@@ -16,14 +16,14 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
     $status = $this->connect($config);
     
     if($status === true){
-      removeData("credentials");
-      \H::saveJSONData("credentials", $config);
-      sss("Connected", "I have successfully connected to database.");
+      $this->removeData("credentials");
+      $this->saveJSONData("credentials", $config);
+      echo sss("Connected", "I have successfully connected to database.");
     }else if($status == "no_table"){
-      ser("No Table", "I couldn't find the table you mentioned in the database");
+      echo ser("No Table", "I couldn't find the table you mentioned in the database");
       $this->dbinfo = $config;
     }else{
-      ser("Cound't Connect To Database", "I couldn't connect to the database with the credentials you gave. Please check it again.");
+      echo ser("Cound't Connect To Database", "I couldn't connect to the database with the credentials you gave. Please check it again.");
       $this->dbinfo = $config;
     }
   }
@@ -72,4 +72,4 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
   }
   </style>
 </div>
-<?php require_once APP_DIR . "/src/inc/partial/layout_footer.php";?>
+<?php require_once $this->dir . "/src/inc/partial/layout_footer.php";?>

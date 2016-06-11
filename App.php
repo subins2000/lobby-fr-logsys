@@ -7,18 +7,18 @@ class fr_logsys extends \Lobby\App {
   public $info, $dbinfo = array();
   public $table, $dbh = null;
   
-  public function page(){
-    $this->dbinfo = \H::getJSONData("credentials");
-    if(getData("credentials") != null && $this->connect($this->dbinfo)){
+  public function page($page){
+    $this->dbinfo = $this->getJSONData("credentials");
+    if($this->getData("credentials") != null && $this->connect($this->dbinfo)){
       $this->set = true;
     }
     return "auto";
   }
   
   public function load(){
-    $dbinfo = \H::getJSONData("credentials");
+    $dbinfo = $this->getJSONData("credentials");
     $this->table = $dbinfo['db_table'];
-    require_once APP_DIR . "/src/inc/logsys.config.php";
+    require_once $this->dir . "/src/inc/logsys.config.php";
   }
   
   public function setInfo(){

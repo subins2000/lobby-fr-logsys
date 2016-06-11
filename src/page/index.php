@@ -9,9 +9,9 @@
     <li>Export Users` Data</li>
     <li>Assign Custom Values to Users</li>
   </ul>
-  <a href='<?php echo APP_URL;?>/admin' class='btn green'>Go To Admin</a>
+  <a href='<?php echo $this->url;?>/admin' class='btn green'>Go To Admin</a>
   <div style='background: white;padding: 20px 15px;margin: 10px 0px;width: 450px;'>logSys is running because of support and feedback from you. If you found logSys helpful, please consider a <a target='_blank' class='btn red' href='http://subinsb.com/donate?utm_source=lobby_logsys.admin
-'>Donation</a>.<br/><br/><a target='_blank' href='http://subinsb.com/?utm_source=lobby_logsys.admin'><img src='<?php echo APP_SRC;?>/src/image/blog_logo.png' width='100%'  /></a>
+'>Donation</a>.<br/><br/><a target='_blank' href='http://subinsb.com/?utm_source=lobby_logsys.admin'><img src='<?php echo $this->srcURL;?>/src/image/blog_logo.png' width='100%'  /></a>
     <ul>
       <li><a href='http://subinsb.com/php-logsys?utm_source=lobby_logsys.admin' target='_blank'>logSys Documentation</a></li>
       <li><a href='http://github.com/subins2000/logSys' target='_blank'>GitHub Repository</a></li>

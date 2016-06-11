@@ -9,10 +9,10 @@ if(isset($_POST['column'])){
       $sql = $this->dbh->prepare("ALTER TABLE `". $this->table ."` ADD {$column['name']} {$column['type']}({$column['length']})");
     }
     if($sql->execute()){
-      sss("Column Added", "The column <b>{{$column['name']}}</b> was successfully added");
+      echo sss("Column Added", "The column <b>{{$column['name']}}</b> was successfully added");
     }else{
       $this->log($sql->errorInfo());
-      ser("Failed", "Some error caused the column to be not created");
+      echo ser("Failed", "Some error caused the column to be not created");
     }
   }
 }
@@ -81,7 +81,7 @@ $field = str_replace(array("\r","\n"), "", ("<tr>
     if($("#column_name").val() == ""){
       alert("Type in a Column Name");
     }else if(typeof valid[$(this).find("option:selected").val()] == "undefined" || (typeof valid[$(this).find("option:selected").val()] != "undefined" && valid[$(this).find("option:selected").val()]() == true)){
-      $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "new_col.php"}).appendTo(".workspace").click();
+      $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "new_col.php"}).appendTo("#workspace").click();
     }
   });
   

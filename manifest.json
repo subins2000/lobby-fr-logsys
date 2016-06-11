@@ -1,11 +1,11 @@
 {
-  "name" : "Fr.logSys Admin",
-  "short_description" : "Francium logSys Management App",
+  "name" : "Francium logSys Admin",
+  "short_description" : "Manage your Francium logSys users' table",
   "category" : "development",
   "sub_category" : "web",
-  "version" : "0.1.1",
-  "requires" : {
-    "lobby" : [">=", "0.5"]
+  "version" : "0.2",
+  "require": {
+    "lobby": ">=0.7"
   },
   "author" : "Subin",
   "author_page" : "http://subinsb.com",

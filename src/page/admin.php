@@ -1,5 +1,5 @@
 <?php
-require_once APP_DIR . "/src/inc/partial/layout.php";
+require_once $this->dir . "/src/inc/partial/layout.php";
 ?>
 <div class='contentLoader'>
   <h1>Home</h1>
@@ -8,25 +8,25 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
     $this->setInfo();
   ?>
     <div class='stat'>
-      <a href='<?php echo APP_URL;?>/admin/users'>
+      <a href='<?php echo $this->url;?>/admin/users'>
         <div class='count'><?php echo $this->info['users'];?></div>
         <span>Total Users</span>
       </a>
     </div>
     <div class='stat'>
-      <a href='<?php echo APP_URL;?>/admin/tokens'>
+      <a href='<?php echo $this->url;?>/admin/tokens'>
         <div class='count'><?php echo $this->info['verify_tokens'];?></div>
         <span>Unused Tokens</span>
       </a>
     </div>
     <div class='stat'>
-      <a href='<?php echo APP_URL;?>/admin/stats'>
+      <a href='<?php echo $this->url;?>/admin/stats'>
         <div class='count'><?php echo $this->registeredInAMonth();?></div>
         <span>New User(s) In Last Month</span>
       </a>
     </div>
     <div style='background: white;padding: 20px 15px;margin: 40px 0px;width: 450px;'>logSys is running because of support and feedback from you. If you found logSys helpful, please consider a <a target='_blank' class='btn red' href='http://subinsb.com/donate?utm_source=lobby_logsys.admin
-'>Donation</a>.<br/><br/><a target='_blank' href='http://subinsb.com/?utm_source=lobby_logsys.admin'><img src='<?php echo APP_SRC;?>/src/image/blog_logo.png' width='100%'  /></a>
+'>Donation</a>.<br/><br/><a target='_blank' href='http://subinsb.com/?utm_source=lobby_logsys.admin'><img src='<?php echo $this->srcURL;?>/src/image/blog_logo.png' width='100%'  /></a>
     <ul>
       <li><a href='http://subinsb.com/php-logsys?utm_source=lobby_logsys.admin' target='_blank'>logSys Documentation</a></li>
       <li><a href='http://github.com/subins2000/logSys' target='_blank'>GitHub Repository</a></li>
@@ -35,9 +35,9 @@ require_once APP_DIR . "/src/inc/partial/layout.php";
   <?php
   }else{
   ?>
-    <a href='<?php echo APP_URL;?>/admin/config' class='btn red'>Setup logSys Admin</a>
+    <a href='<?php echo $this->url;?>/admin/config' class='btn red'>Setup logSys Admin</a>
   <?php
   }
   ?>
 </div>
-<?php require_once APP_DIR . "/src/inc/partial/layout_footer.php";?>
+<?php require_once $this->dir . "/src/inc/partial/layout_footer.php";?>
