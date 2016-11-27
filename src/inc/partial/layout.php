@@ -2,6 +2,7 @@
 $this->addStyle("admin.css");
 $this->addStyle("jquery.fancybox.css");
 $this->addScript("jquery.fancybox.js");
+$this->addScript("ajaxify.min.js");
 $this->addScript("chart.min.js");
 $this->addScript("admin.js");
 ?>

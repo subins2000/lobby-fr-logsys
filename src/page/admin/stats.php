@@ -6,7 +6,7 @@ require_once $this->dir . "/src/inc/partial/layout.php";
   <?php
   if($this->set){
     $this->load();
-    
+
     $inMonth = $this->registeredInAMonth();
     $perMonthRaw = $this->dbh->query("SELECT MONTH(`created`), COUNT(`created`) FROM `{$this->table}` WHERE `created` >= NOW() - INTERVAL 1 YEAR GROUP BY MONTH(`created`)")->fetchAll();
 
@@ -17,7 +17,7 @@ require_once $this->dir . "/src/inc/partial/layout.php";
     foreach($perMonthRaw as $k => $v){
       $perMonth[$v[0]] = $v[1];
     }
-    
+
     $perDayRaw = $this->dbh->query("SELECT DAY(`created`), COUNT(`created`) FROM `{$this->table}` WHERE `created` >= NOW() - INTERVAL 1 MONTH GROUP BY DAY(`created`)")->fetchAll();
 
     $perDay = array();
@@ -46,7 +46,7 @@ require_once $this->dir . "/src/inc/partial/layout.php";
       }
     </style>
   <?php
-    \Lobby::hook("head.end", function() use($perMonth, $perDay){
+    \Hooks::addAction("head.end", function() use($perMonth, $perDay){
       echo '<script>lobby.load(function(){lobby.app.stats('. json_encode(array_values($perMonth)) .', '. json_encode(array_values($perDay)) .', '. json_encode(array_keys($perDay)) .');});</script>';
     });
   }else{

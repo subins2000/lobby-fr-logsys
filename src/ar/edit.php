@@ -10,13 +10,13 @@ if(!isset($_POST['uid'])){
     echo ser("User Not Found", "The user with the given ID doesn't exist.");
   }else{
     $id = $_POST['uid'];
-    
+
     if(isset($_POST['update'])){
       /**
        * Update info except password
        */
       \fr_logsys\Fr\LS::updateUser($_POST['update'], $id);
-      
+
       /**
        * Change Password
        */
@@ -27,13 +27,13 @@ if(!isset($_POST['uid'])){
         \fr_logsys\Fr\LS::$user = null;
         \fr_logsys\Fr\LS::$loggedIn = false;
       }
-      
+
       echo sss("Updated", "The user's data was successfully updated. <a href='javascript:window.location.reload();'>Reload page</a> to see changes.");
-      
+
       $sql = $this->dbh->prepare("SELECT * FROM `". $this->table ."` WHERE `id` = ?");
       $sql->execute(array($id));
     }
-    
+
     $info = $sql->fetch(\PDO::FETCH_ASSOC);
 ?>
     <h2><?php echo "Editing User '$id'";?></h2>
@@ -49,7 +49,7 @@ if(!isset($_POST['uid'])){
           </label>
       <?php
         }
-        if($column == "password"){        
+        if($column == "password"){
       ?>
           <label>
             <span>Password</span>
@@ -74,7 +74,7 @@ if(!isset($_POST['uid'])){
     <script>
       $("form#updateUser").die("submit").live("submit", function(){
         event.preventDefault();
-        $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "edit.php"}).appendTo("#workspace").click();
+        $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "edit"}).appendTo("#workspace").click();
       });
     </script>
 <?php

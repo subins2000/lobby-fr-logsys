@@ -3,9 +3,9 @@
   "short_description" : "Manage your Francium logSys users' table",
   "category" : "development",
   "sub_category" : "web",
-  "version" : "0.2",
+  "version" : "0.3",
   "require": {
-    "lobby": ">=0.7"
+    "lobby": ">=0.9.3"
   },
   "author" : "Subin",
   "author_page" : "http://subinsb.com",

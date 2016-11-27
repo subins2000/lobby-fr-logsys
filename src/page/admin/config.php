@@ -14,10 +14,10 @@ require_once $this->dir . "/src/inc/partial/layout.php";
       "db_table" => $_POST['db_table']
     );
     $status = $this->connect($config);
-    
+
     if($status === true){
-      $this->removeData("credentials");
-      $this->saveJSONData("credentials", $config);
+      $this->data->remove("credentials");
+      $this->data->saveArray("credentials", $config);
       echo sss("Connected", "I have successfully connected to database.");
     }else if($status == "no_table"){
       echo ser("No Table", "I couldn't find the table you mentioned in the database");

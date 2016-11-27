@@ -49,14 +49,14 @@ $field = str_replace(array("\r","\n"), "", ("<tr>
 <script>
   $("#newColumn #newField").live("click", function(){
     i = typeof $("#newColumn table tr:last").data("no") == "undefined" ? 1 : parseFloat($("#newColumn table tr:last").data("no")) + 1;
-    
+
     h = "<?php echo $field;?>".replace(/\[0\]/g, "["+ i +"]");
     clog(i);
     $("#newColumn table tr:last").after($(h).data("no", i));
     $(this).remove();
     selectMenu();
   });
-  
+
   $("form#newColumn").die("submit").live("submit", function(){
     event.preventDefault();
     valid = {
@@ -77,14 +77,14 @@ $field = str_replace(array("\r","\n"), "", ("<tr>
         }
       }
     };
-    
+
     if($("#column_name").val() == ""){
       alert("Type in a Column Name");
     }else if(typeof valid[$(this).find("option:selected").val()] == "undefined" || (typeof valid[$(this).find("option:selected").val()] != "undefined" && valid[$(this).find("option:selected").val()]() == true)){
-      $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "new_col.php"}).appendTo("#workspace").click();
+      $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "new_col"}).appendTo("#workspace").click();
     }
   });
-  
+
   $(".column_type").selectmenu({
     open: function( event, ui ) {
       $(this).css("z-index", 999);

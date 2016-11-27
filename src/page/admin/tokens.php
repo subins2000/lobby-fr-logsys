@@ -1,5 +1,6 @@
 <?php
 require_once $this->dir . "/src/inc/partial/layout.php";
+use \Lobby\App\fr_logsys\Fr\LS;
 ?>
 <div class='contentLoader'>
   <h1>Tokens</h1>
@@ -7,27 +8,39 @@ require_once $this->dir . "/src/inc/partial/layout.php";
   <?php
   if($this->set){
     $this->load();
-    
+
     if(isset($_POST['clear_tokens'])){
-      $sql = \Lobby\App\fr_logsys\Fr\LS::$dbh->prepare("TRUNCATE TABLE `resetTokens`");
+      $sql = $this->dbh->prepare("TRUNCATE TABLE `resetTokens`");
       $sql->execute();
       echo sme("Tokens Cleared", "All tokens were cleared from the table");
     }
-    
+
     $_GET['start'] = isset($_GET['start']) ? $_GET['start'] : 0;
-    
-    $sql = \Lobby\App\fr_logsys\Fr\LS::$dbh->prepare("SELECT * FROM `resetTokens` LIMIT :start, 10");
+
+    $sql = $this->dbh->prepare("SELECT * FROM `resetTokens` LIMIT :start, 10");
     $sql->bindParam(":start", $_GET['start'], \PDO::PARAM_INT);
     $sql->execute();
-    
+
     if($sql->rowCount() == 0){
       echo sme("No Tokens", "There are currently no tokens stored in the table.");
     }else{
-      echo "<table><thead><th width='30%'>User</th><th width='50%'>Token</th><th title='YYYY-MM-DD HH:MM:SS' width='20%'>Created</th></thead><tbody>";
+      ?>
+      <table>
+        <thead>
+          <th width='10%'>User ID</th>
+          <th width='20%'>Username</th>
+          <th width='30%'>Name</th>
+          <th width='20%'>Token</th>
+          <th title='YYYY-MM-DD HH:MM:SS' width='20%'>Created</th>
+        </thead>
+        <tbody>
+      <?php
       while($r = $sql->fetch()){
   ?>
         <tr>
-          <td title="User ID: <?php echo $r['uid'];?>"><?php echo \Lobby\App\fr_logsys\Fr\LS::getUser("name", $r['uid']);?></td>
+          <td><?php echo $r['uid'];?></td>
+          <td><?php echo LS::getUser("username", $r['uid']);?></td>
+          <td><?php echo LS::getUser("name", $r['uid']);?></td>
           <td><?php echo $r['token'];?></td>
           <td><?php echo $r['requested'];?></td>
         </tr>

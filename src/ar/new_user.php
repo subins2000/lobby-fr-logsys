@@ -1,12 +1,18 @@
 <?php
 $this->load();
 
+use Lobby\App\fr_logsys\Fr\LS;
+
 if(isset($_POST['new'])){
   $omitted_array = $_POST['new'];
+
   unset($omitted_array['password']);
   unset($omitted_array['username']);
-    
-  \fr_logsys\Fr\LS::register($_POST['new']['username'], $_POST['new']['password'], $omitted_array);
+
+  if(isset($omitted_array['created']) && $omitted_array['created'] == null)
+    $omitted_array['created'] = date("Y-m-d H:i:s");
+
+  LS::register($_POST['new']['username'], $_POST['new']['password'], $omitted_array);
   echo sss("Created", "The user has been created. <a href='javascript:window.location.reload();'>Reload page</a> to see changes.");
 }
 
@@ -42,6 +48,6 @@ $columns = $this->dbh->query("DESCRIBE `". $this->table ."`")->fetchAll();
 <script>
   $("form#newUser").die("submit").live("submit", function(){
     event.preventDefault();
-    $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "new_user.php"}).appendTo("#workspace").click();
+    $("<a class='dialog'></a>").data({"params": $(this).serialize(), "dialog": "new_user"}).appendTo("#workspace").click();
   });
 </script>

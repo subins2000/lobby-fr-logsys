@@ -8,9 +8,9 @@
 }
 .leftpane div a[href]{
   display: block;
-  margin: 5px 0px;
-  padding: 8px 0px 8px 15px;
-  background: #DDD;
+  margin: 0;
+  padding: 15px 0px 15px 15px;
+  background: transparent;
   color: black;
   position: relative;
 }

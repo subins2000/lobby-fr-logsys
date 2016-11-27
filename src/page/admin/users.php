@@ -6,26 +6,26 @@ require_once $this->dir . "/src/inc/partial/layout.php";
   <?php
   if($this->set){
     $this->load();
-    
-    echo "<a class='btn dialog' data-dialog='new_user.php'>New User</a>";
-    echo "<a class='btn green dialog' data-dialog='new_col.php'>Add New Column</a>";
-    echo "<a class='btn green dialog' data-dialog='export.php'>Export as SQL</a>";
-    
+
+    echo "<a class='btn dialog' data-dialog='new_user'>New User</a>";
+    echo "<a class='btn green dialog' data-dialog='new_col'>Add New Column</a>";
+    echo "<a class='btn green dialog' data-dialog='export'>Export as SQL</a>";
+
     if(isset($_POST['remove_user'])){
       $sql = $this->dbh->prepare("DELETE FROM `". $this->table ."` WHERE `id` = ?");
       $sql->execute(array($_POST['remove_user']));
       echo sss("Removed User", "The user with the ID '". htmlspecialchars($_POST['remove_user']) ."' was deleted from the database");
     }
-    
+
     $_GET['start'] = isset($_GET['start']) ? $_GET['start'] : 0;
-    
+
     $sql = $this->dbh->prepare("SELECT * FROM `". $this->table ."` ORDER BY `id` LIMIT :start, 10");
     $sql->bindValue(":start", (int) trim($_GET['start']), \PDO::PARAM_INT);
     $sql->execute();
-    
+
     $results = $sql->fetchAll(\PDO::FETCH_ASSOC);
     $usersCount = $sql->rowCount();
-    
+
     if($usersCount == 0){
       echo sme("No Users", "There are currently no users stored in the table.");
     }else{
@@ -37,7 +37,7 @@ require_once $this->dir . "/src/inc/partial/layout.php";
           "created" => "created: The date when the user created her/his account",
           "attempt" => "attempt: The number of times the user have attempted logins or the time for which the user was blocked from loggging in."
         );
-        
+
         $sql = $this->dbh->query("DESCRIBE `". $this->table ."`");
         foreach($sql->fetchAll() as $null => $column){
           $column_name = $column['Field'];
@@ -52,7 +52,7 @@ require_once $this->dir . "/src/inc/partial/layout.php";
   ?>
         <tr>
           <td><?php
-          echo "<a class='btn dialog' data-dialog='edit.php' data-params=\"uid=$id\">Edit</a>";
+          echo "<a class='btn dialog' data-dialog='edit' data-params=\"uid=$id\">Edit</a>";
           echo "<form id='clear_form' action='". $this->url ."/admin/users' method='POST' style='display: inline-block;'><input type='hidden' name='remove_user' value='$id'/><a class='btn red' onclick=\"confirm('Are you sure you want to delete the user ?') ? $(this).parents('form').submit() : '';\">Remove</a></form>";
           ?></td>
           <td><?php echo $id;?></td>
